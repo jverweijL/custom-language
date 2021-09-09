@@ -40,4 +40,6 @@ locales=en,nl_NL,es_ES,sv_SE,tr_TR,uk_UA,vi_VN,gu_IN
 You have to make the new local added to the list of current locales  
 Goto `control panel` --> `configuration` --> `instance settings`  
 
-4. Deploy custom-language module and checkout the sign-in portlet
+4. Update labels (if needed) in `src/main/resources/content/language_gu_IN.properties`
+
+5. Deploy custom-language module and checkout the sign-in portlet
