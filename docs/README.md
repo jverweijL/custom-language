@@ -1,3 +1,5 @@
+TODO: describe how to add proper language flag
+
 # Adding a new language
 Inspired by https://ignek.com/blog/add-custom-language-support-to-liferay-7  
 
