@@ -1,0 +1,4 @@
+Bundle-Name: custom-language
+Bundle-SymbolicName: custom.language
+Bundle-Version: 1.0.0
+Export-Package: custom.language.api
