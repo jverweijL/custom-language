@@ -11,7 +11,20 @@ Inspired by https://ignek.com/blog/add-custom-language-support-to-liferay-7
 
 
 ## Steps
-1. Modify web.xml
+1a. Modify web.xml
+```xml
+...
+<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>/c/portal/protected</web-resource-name>
+        <url-pattern>/gu/c/portal/protected</url-pattern>
+        <url-pattern>/gu_IN/c/portal/protected</url-pattern>
+    </web-resource-collection>
+</security-constraint>    
+...
+```
+
+1a. Modify shielded-container-web.xml
 ```xml
 ...
 <servlet-mapping>
@@ -22,18 +35,18 @@ Inspired by https://ignek.com/blog/add-custom-language-support-to-liferay-7
     <servlet-name>I18n Servlet</servlet-name>
     <url-pattern>/gu_IN/*</url-pattern>
 </servlet-mapping>
-<security-constraint>
-    <web-resource-collection>
-        <web-resource-name>/c/portal/protected</web-resource-name>
-        <url-pattern>/gu/c/portal/protected</url-pattern>
-        <url-pattern>/gu_IN/c/portal/protected</url-pattern>
-    </web-resource-collection>
-</security-constraint>    
 ...
 ```
+
+You can use the following commands:
+```shell
+sed -i 's/<url-pattern>\/nl\/c\/portal\/protected<\/url-pattern>/<url-pattern>\/nl\/c\/portal\/protected<\/url-pattern>\n<url-pattern>\/gu\/c\/portal\/protected<\/url-pattern>\n<url-pattern>\/gu_IN\/c\/portal\/protected<\/url-pattern>\n/g' /opt/liferay/tomcat/webapps/ROOT/WEB-INF/web.xml
+sed -i 's/<\/servlet-mapping>/<\/servlet-mapping>\n<servlet-mapping>\n<servlet-name>I18n Servlet<\/servlet-name>\n<url-pattern>\/gu\/\*<\/url-pattern>\n<\/servlet-mapping>\n<servlet-mapping>\n<servlet-name>I18n Servlet<\/servlet-name>\n<url-pattern>\/gu_IN\/\*<\/url-pattern>\n<\/servlet-mapping>/' /opt/liferay/tomcat/webapps/ROOT/WEB-INF/shielded-container-web.xml
+```
+
 2. portal-ext.properties
 ```properties
-locales=en,nl_NL,es_ES,sv_SE,tr_TR,uk_UA,vi_VN,gu_IN
+locales=en_US,nl_NL,es_ES,sv_SE,tr_TR,uk_UA,vi_VN,gu_IN
 ```
 
 3. Make current  
